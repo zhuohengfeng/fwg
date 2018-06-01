@@ -1,0 +1,9 @@
+flask
+flask_bootstrap
+flask_login
+flask_mail
+flask_migrate
+flask_script
+flask_sqlalchemy
+flask_wtf
+Werkzeug
