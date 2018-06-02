@@ -1,7 +1,6 @@
-Flasky
-======
-
-This repository contains the archived source code examples for my O'Reilly book [Flask Web Development](http://www.flaskbook.com), first edition. For the code examples for the current edition of the book, go to [https://github.com/miguelgrinberg/flasky](https://github.com/miguelgrinberg/flasky).
-
-The commits and tags in this repository were carefully created to match the sequence in which concepts are presented in the book. Please read the section titled "How to Work with the Example Code" in the book's preface for instructions.
-
+# Framework Generic team Tools
+基于Python Flask开发的android系统LOG分析工具：
+1. 通过event log生成系统，各个进程的内存使用情况
+2. 通过system log生成系统wakelock的使用情况
+3. 解析bugreport，提取一些重要的信息
+4. 搜索历史CR的信息
