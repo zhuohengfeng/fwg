@@ -7,3 +7,4 @@ flask_script
 flask_sqlalchemy
 flask_wtf
 Werkzeug
+itsdangerous

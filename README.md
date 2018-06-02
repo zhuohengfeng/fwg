@@ -1,20 +1,7 @@
-Flask==0.12
-Flask-Bootstrap==3.0.3.1
-Flask-Login==0.3.1
-Flask-Mail==0.9.0
-Flask-Migrate==2.0.3
-Flask-Moment==0.2.1
-Flask-SQLAlchemy==2.1
-Flask-Script==2.0.5
-Flask-WTF==0.14.2
-Jinja2==2.9.5
-Mako==1.0.6
-MarkupSafe==0.23
-SQLAlchemy==1.1.5
-WTForms==2.1
-Werkzeug==0.11.15
-alembic==0.8.10
-blinker==1.3
-click==6.7
-itsdangerous==0.24
-python-editor==1.0.3
+Flasky
+======
+
+This repository contains the archived source code examples for my O'Reilly book [Flask Web Development](http://www.flaskbook.com), first edition. For the code examples for the current edition of the book, go to [https://github.com/miguelgrinberg/flasky](https://github.com/miguelgrinberg/flasky).
+
+The commits and tags in this repository were carefully created to match the sequence in which concepts are presented in the book. Please read the section titled "How to Work with the Example Code" in the book's preface for instructions.
+
