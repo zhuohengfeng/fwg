@@ -64,6 +64,7 @@ class User(UserMixin, db.Model):
     avatar_hash = db.Column(db.String(32))
     posts = db.relationship('Post', backref='author', lazy='dynamic')
 
+
     @staticmethod
     def generate_fake(count=100):
         from sqlalchemy.exc import IntegrityError
