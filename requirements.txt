@@ -11,3 +11,4 @@ Werkzeug
 itsdangerous
 ForgeryPy
 gunicorn
+plotly

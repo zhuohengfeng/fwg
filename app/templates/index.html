@@ -5,20 +5,70 @@
 {% block title %}FWG{% endblock %}
 
 {% block page_content %}
+
 <div class="page-header">
-    <h1>Hello, {% if current_user.is_authenticated %}{{ current_user.username }}{% else %}Stranger{% endif %}!</h1>
+    <h1>Hello, {% if current_user.is_authenticated %}{{ current_user.username }}{% else %}Guest{% endif %}!</h1>
 </div>
-<div>
-    {% if current_user.is_authenticated %}
-    {{ wtf.quick_form(form) }}
-    {% endif %}
+
+<h4></h4>
+
+
+
+
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">一，常用LOG搜索关键字</div>
+  <div class="panel-body">
+    <p>1. Stability问题</p>
+  </div>
+  <!-- List group -->
+  <ul class="list-group">
+    <li class="list-group-item">看是否有重启：sysem server</li>
+    <li class="list-group-item">看是否有发生watchdog：goodbye</li>
+  </ul>
 </div>
-{% include '_posts.html' %}
-{% if pagination %}
-<div class="pagination">
-    {{ macros.pagination_widget(pagination, '.index') }}
+
+
+
+
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">二， GIT提交Google&Qualcomm patch 的总结</div>
+  <div class="panel-body">
+    <p>1. cherry google/qcom提交</p>
+  </div>
+  <!-- List group -->
+  <ul class="list-group">
+    <li class="list-group-item">
+Cherrypick google的patch有一定的要求：<br>
+1.必须保留原来的作者。<br>
+2.在commit log里增加Mot-CRs-fixed: IKSWN-XXXX<br>
+<br>
+git cherry-pick<br>
+push<br>
+edit commit message : Mot-CRs-fixed: IKSWN-XXXX<br>
+    </li>
+
+    <li class="list-group-item">
+操作步骤如下：<br>
+1 git cherry-pick --x commit id<br>
+2 执行后<br>
+2.1 没有冲突<br>
+2.1.1 直接push上去：git push orgin HEAD:refs/for/xxxx<br>
+2.2 有冲突<br>
+2.2.1 解决冲突<br>
+2.2.2 git cherry-pick --continue<br>
+2.2.3 push上去：git push orgin HEAD:refs/for/xxxx<br>
+2.2.4 提交信息中有冲突信息（手动解决冲突时残留的），记得删除（可在push到gerrit后再编辑删除）<br>
+    </li>
+  </ul>
 </div>
-{% endif %}
+
+
+
+
+
+
 {% endblock %}
 
 {% block scripts %}
