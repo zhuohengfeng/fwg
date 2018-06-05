@@ -61,6 +61,6 @@ class SearchForm(FlaskForm):
 
 
 class AnalysisForm(FlaskForm):
-    file = FileField(u'上传Log文件：', validators=[FileAllowed(['log','txt'],u'文件格式不对'),FileRequired()])
-    type = RadioField(u'选择要分析的类型：', choices=[(0,'pss'),(1,'wakelock'),(2,'cpu')])
+    file = FileField(u'上传Log文件：', validators=[FileAllowed(['log' ,'txt'], u'文件格式不对'),FileRequired()])
+    analysisType = RadioField(u'选择要分析的类型：', choices=[(0, 'pss'), (1, 'wakelock'), (2, 'cpu')])
     submit = SubmitField('Analysis')
