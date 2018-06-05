@@ -2,7 +2,7 @@ from flask import render_template, redirect, url_for, abort, flash, request,\
     current_app
 from flask_login import login_required, current_user
 from . import main
-from .forms import EditProfileForm, EditProfileAdminForm, PostForm
+from .forms import EditProfileForm, EditProfileAdminForm, PostForm, SearchForm, AnalysisForm
 from .. import db
 from ..models import Permission, Role, User, Post
 from ..decorators import admin_required
@@ -80,3 +80,18 @@ def edit_profile_admin(id):
     form.location.data = user.location
     form.about_me.data = user.about_me
     return render_template('edit_profile.html', form=form, user=user)
+
+
+# =============================================================
+@main.route('/analysis', methods=['GET', 'POST'])
+#@login_required
+def analysis():
+    form = AnalysisForm()
+    return render_template('analysis.html', form=form)
+
+
+@main.route('/search', methods=['GET', 'POST'])
+#@login_required
+def search():
+    form = SearchForm()
+    return render_template('search.html', form=form)

@@ -1,4 +1,5 @@
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import StringField, TextAreaField, BooleanField, SelectField,\
     SubmitField
 from wtforms.validators import Required, Length, Email, Regexp
@@ -52,3 +53,13 @@ class EditProfileAdminForm(FlaskForm):
 class PostForm(FlaskForm):
     body = TextAreaField("What's on your mind?", validators=[Required()])
     submit = SubmitField('Submit')
+
+
+class SearchForm(FlaskForm):
+    body = StringField(u'请输入要搜索CR的关键字：', validators=[Required()])
+    submit = SubmitField('Search')
+
+
+class AnalysisForm(FlaskForm):
+    file = FileField(u'上传Log文件：', validators=[FileAllowed(['log','txt'],u'文件格式不对'),FileRequired()])
+    submit = SubmitField('Analysis')
