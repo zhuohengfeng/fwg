@@ -9,6 +9,16 @@ from .core import PssFilter, LogLineCollection, ProcessDiedFilter, KillFilter, \
     WakeLockAcquiringFilter, WakeLockReleasingFilter
 from .charts import PssChartBuilder, WakeLockChartBuilder
 
+# 创建临时文件
+# tmpdir = None
+# try:
+#     # Create a temporary working directory
+#     tmpdir = tempfile.mkdtemp()
+# finally:
+#     # Clean up our temporary working directory
+#     if tmpdir:
+#         shutil.rmtree(tmpdir, ignore_errors=True)
+
 def pss_chart(infile, box_plot, line_system, line_process):
     log_line_collection = LogLineCollection.instance([
         PssFilter(), ProcessDiedFilter(), KillFilter()
@@ -18,6 +28,7 @@ def pss_chart(infile, box_plot, line_system, line_process):
     new_lines = [line.decode('utf-8') for line in lines]
     log_line_collection.add_log_in_batch(new_lines)
     return PssChartBuilder.generate_timed_line_per_process(log_line_collection)
+
 
     #根据参数选择画三种不同的图
     #if box_plot:

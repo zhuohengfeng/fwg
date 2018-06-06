@@ -15,6 +15,9 @@ from ..models import Permission, Role, User, Post
 from ..decorators import admin_required
 from werkzeug.utils import secure_filename
 from .analysis.utils import pss_chart, wakelock_line_chart_process
+import os
+import tempfile
+import shutil
 
 @main.route('/', methods=['GET', 'POST'])
 def index():
@@ -96,22 +99,22 @@ def edit_profile_admin(id):
 def analysis():
     form = AnalysisForm()
     if form.validate_on_submit():
-        print(form.photo.data.filename)
-        print (form.body.data)
-        # f = request.files['file']
-        # url = pss_chart(f, False, True, False)
-        # name = url.split("\\")[-1]
-        # base_dir = os.path.dirname(__file__)
-        # url = os.path.join(base_dir, name)
-
-        analysisType = request.form.get('analysisType')
-        uploadFile = request.files.get('uploadFile')
+        analysisType = int(form.analysisType.data)
+        uploadFile = form.uploadFile.data
         # 对文件名进行包装，为了安全,不过对中文的文件名显示有问题
-        filename = secure_filename(uploadFile.filename)
-        uploadFile.save(os.path.join(UPLOAD_PATH, filename))
-        return "文件上传成功"
-        #return render_template('analysis.html', form=form, url="")
-    return render_template('analysis.html', form=form)
+        #filename = secure_filename(uploadFile.filename)
+
+        # Unpack the zipfile into the temporary directory
+        url = pss_chart(uploadFile, False, True, False)
+        name = url.split("\\")[-1]
+        base_dir = os.path.dirname(__file__)
+        url = os.path.join(base_dir, name)
+        # return render_template('index.html', url=url)
+        return "文件上传成功url=".format(url)
+    else:
+        filename = None
+    return render_template('analysis.html', form=form, filename=filename)
+
 
 
 @main.route('/search', methods=['GET', 'POST'])
@@ -120,26 +123,4 @@ def search():
     form = SearchForm()
     if form.validate_on_submit():
         pass
-    # tmpdir = None
-    # try:
-    #     # Create a temporary working directory
-    #     tmpdir = tempfile.mkdtemp()
-    #
-    #     # Unpack the zipfile into the temporary directory
-    #     pip_zip = os.path.join(tmpdir, "pip.zip")
-    #     with open(pip_zip, "wb") as fp:
-    #         fp.write(b85decode(DATA.replace(b"\n", b"")))
-    #
-    #     # Add the zipfile to sys.path so that we can import it
-    #     sys.path.insert(0, pip_zip)
-    #
-    #     # Run the bootstrap
-    #     bootstrap(tmpdir=tmpdir)
-    # finally:
-    #     # Clean up our temporary working directory
-    #     if tmpdir:
-    #         shutil.rmtree(tmpdir, ignore_errors=True)
-    #    # Remove our temporary directory
-    #     if delete_tmpdir and tmpdir:
-    #         shutil.rmtree(tmpdir, ignore_errors=True)
     return render_template('search.html', form=form)
