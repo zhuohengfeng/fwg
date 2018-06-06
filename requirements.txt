@@ -6,6 +6,7 @@ flask_migrate
 flask_script
 flask_sqlalchemy
 flask_wtf
+flask_uploads
 flask_moment
 Werkzeug
 itsdangerous

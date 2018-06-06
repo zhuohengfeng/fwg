@@ -1,4 +1,10 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# @Time    : 2018/6/6 11:05
+# @Author  : zhuo_hf@foxmail.com
+# @Site    :
+# @File    : xxx.py
+# @Software: PyCharm
 import os
 from app import create_app, db
 from app.models import User, Role, Permission, Post

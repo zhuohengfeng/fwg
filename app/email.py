@@ -1,3 +1,10 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# @Time    : 2018/6/6 11:05
+# @Author  : zhuo_hf@foxmail.com
+# @Site    :
+# @File    : xxx.py
+# @Software: PyCharm
 from threading import Thread
 from flask import current_app, render_template
 from flask_mail import Message

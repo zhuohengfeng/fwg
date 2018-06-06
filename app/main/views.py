@@ -1,3 +1,10 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# @Time    : 2018/6/6 11:05
+# @Author  : zhuo_hf@foxmail.com
+# @Site    :
+# @File    : xxx.py
+# @Software: PyCharm
 from flask import render_template, redirect, url_for, abort, flash, request,\
     current_app
 from flask_login import login_required, current_user
@@ -6,7 +13,8 @@ from .forms import EditProfileForm, EditProfileAdminForm, PostForm, SearchForm, 
 from .. import db
 from ..models import Permission, Role, User, Post
 from ..decorators import admin_required
-
+from werkzeug.utils import secure_filename
+from .analysis.utils import pss_chart, wakelock_line_chart_process
 
 @main.route('/', methods=['GET', 'POST'])
 def index():
@@ -88,7 +96,21 @@ def edit_profile_admin(id):
 def analysis():
     form = AnalysisForm()
     if form.validate_on_submit():
-        pass
+        print(form.photo.data.filename)
+        print (form.body.data)
+        # f = request.files['file']
+        # url = pss_chart(f, False, True, False)
+        # name = url.split("\\")[-1]
+        # base_dir = os.path.dirname(__file__)
+        # url = os.path.join(base_dir, name)
+
+        analysisType = request.form.get('analysisType')
+        uploadFile = request.files.get('uploadFile')
+        # 对文件名进行包装，为了安全,不过对中文的文件名显示有问题
+        filename = secure_filename(uploadFile.filename)
+        uploadFile.save(os.path.join(UPLOAD_PATH, filename))
+        return "文件上传成功"
+        #return render_template('analysis.html', form=form, url="")
     return render_template('analysis.html', form=form)
 
 

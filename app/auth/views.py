@@ -1,3 +1,10 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# @Time    : 2018/6/6 11:05
+# @Author  : zhuo_hf@foxmail.com
+# @Site    :
+# @File    : xxx.py
+# @Software: PyCharm
 from flask import render_template, redirect, request, url_for, flash
 from flask_login import login_user, logout_user, login_required, \
     current_user

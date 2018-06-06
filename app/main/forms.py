@@ -1,3 +1,10 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# @Time    : 2018/6/6 11:05
+# @Author  : zhuo_hf@foxmail.com
+# @Site    :
+# @File    : xxx.py
+# @Software: PyCharm
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import StringField, TextAreaField, BooleanField, SelectField,\
@@ -61,6 +68,6 @@ class SearchForm(FlaskForm):
 
 
 class AnalysisForm(FlaskForm):
-    file = FileField(u'上传Log文件：', validators=[FileAllowed(['log' ,'txt'], u'文件格式不对'),FileRequired()])
+    uploadFile = FileField(u'上传Log文件：', validators=[FileAllowed(['log' ,'txt'], u'文件格式不对'),FileRequired()])
     analysisType = RadioField(u'选择要分析的类型：', choices=[(0, 'pss'), (1, 'wakelock'), (2, 'cpu')])
     submit = SubmitField('Analysis')
